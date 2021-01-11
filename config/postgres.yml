@@ -22,3 +22,10 @@ doctrine:
                 greatest: DoctrineExtensions\Query\Postgresql\Greatest
                 least: DoctrineExtensions\Query\Postgresql\Least
                 regexp_replace: DoctrineExtensions\Query\Postgresql\RegexpReplace
+
+            numeric_functions:
+                standard_length: DoctrineExtensions\Query\Postgresql\StandardLength
+                volume_timber: DoctrineExtensions\Query\Postgresql\VolumeTimber
+                unnest: DoctrineExtensions\Query\Postgresql\Unnest
+                volume_boards: DoctrineExtensions\Query\Postgresql\VolumeBoard
+                get_json_filed_by_key: DoctrineExtensions\Query\Postgresql\GetJsonFieldByKey
