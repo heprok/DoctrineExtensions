@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Doctrine\Type;
+namespace DoctrineExtensions\Types;
 
 use DateTime;
 use Doctrine\DBAL\Platforms\AbstractPlatform;

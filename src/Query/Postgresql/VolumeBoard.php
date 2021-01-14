@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Doctrine\Functions;
+namespace DoctrineExtensions\Query\Postgresql;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\Lexer;

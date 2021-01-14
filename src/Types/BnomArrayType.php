@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Doctrine\Type;
+namespace DoctrineExtensions\Types;
 
 use App\Entity\Bnom;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
