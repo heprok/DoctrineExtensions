@@ -2,7 +2,6 @@
 
 namespace DoctrineExtensions\Types;
 
-use App\Entity\Bnom;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 
