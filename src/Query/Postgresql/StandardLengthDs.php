@@ -8,9 +8,8 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
-final class StandardLength extends FunctionNode
+final class StandardLengthDs extends FunctionNode
 {
-
   public $length;
 
   function getSql(SqlWalker $sqlWalker)
