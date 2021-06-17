@@ -20,7 +20,7 @@ class Int2RangeType extends StringType
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         // dd($value);
-        return sprintf('int2range(%s, %s)', min($value,), max($value));
+        return sprintf('[%s, %s)', min($value,), max($value));
         
     }
 
