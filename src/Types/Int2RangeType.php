@@ -2,18 +2,14 @@
 
 namespace DoctrineExtensions\Types;
 
-use DateInterval;
-use DatePeriod;
-use DateTime;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Types\Type;
-use Salamek\DateRange;
 
-class TsTzRangeType extends StringType
+class Int2RangeType extends StringType
 {
-    const DATERANGE = 'tstzrange';
+    const INT2RANGE = 'int2range';
 
     /**
      * @override
@@ -23,7 +19,9 @@ class TsTzRangeType extends StringType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value;
+        // dd($value);
+        return sprintf('int2range(%s, %s)', min($value,), max($value));
+        
     }
 
     /**
@@ -34,25 +32,24 @@ class TsTzRangeType extends StringType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        // dd($value);
-        if (null !== $value) {
-            if (false == preg_match(DatePeriodRange::REGULAR_DATE_FROM_DB, $value)) {
-                throw ConversionException::conversionFailedFormat(
-                    $value,
-                    $this->getName(),
-                    DatePeriodRange::REGULAR_DATE_FROM_DB
-                );
-            }
-            $value = DatePeriodRange::fromString($value);
+        $reg = '/(?\'includefirst\'\[|\()(?\'first\'\d+),(?\'second\'\d+)(?\'includesecond\'\]|\))/';
+        $str = '[20,40)';
+        if ($value && preg_match($reg, $value, $matches)) {
+            $first = (int)$matches['first'];
+            $second = (int)$matches['second'];
+            $matches['includefirst'] == ')' ? $first-- : $first;
+            $matches['includesecond'] == ')' ? $second-- : $second;
+            return range($first, $second);
+        }else {
+            throw ConversionException::conversionFailedFormat($value, $this->getName(), $reg);
         }
 
-        return $value;
     }
 
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return self::DATERANGE;
+        return self::INT2RANGE;
     }
 
     /**
@@ -61,6 +58,6 @@ class TsTzRangeType extends StringType
      */
     public function getName()
     {
-        return self::DATERANGE;
+        return self::INT2RANGE;
     }
 }
