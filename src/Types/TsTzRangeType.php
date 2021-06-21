@@ -34,7 +34,7 @@ class TsTzRangeType extends StringType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        // dd($value);
+        // dump($value);
         if (null !== $value) {
             if (false == preg_match(DatePeriodRange::REGULAR_DATE_FROM_DB, $value)) {
                 throw ConversionException::conversionFailedFormat(

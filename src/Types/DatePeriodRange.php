@@ -8,7 +8,7 @@ use DateTime;
 
 class DatePeriodRange extends DatePeriod
 {
-    const REGULAR_DATE_FROM_DB = '/(?<included_start>\[|\()"?(?<date_start>[T\d\-\s:+]+)"?,"?(?<date_end>[T\d\-\s:+]*|null)"?(?<included_end>]|\))/';
+    const REGULAR_DATE_FROM_DB = '/(?<included_start>\[|\()"?(?<date_start>[T\d\-\s:+.]+)"?,"?(?<date_end>[T\d\-\s:+.]*|null)"?(?<included_end>]|\))/';
     public function __toString()
     {
         $format = self::EXCLUDE_START_DATE ? '[' : '(';
