@@ -8,14 +8,16 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
-final class StandardLengthDs extends FunctionNode
+abstract class StandardLength extends FunctionNode
 {
   public $length;
 
+  abstract protected function getSchema():string;
+  
   function getSql(SqlWalker $sqlWalker)
   {
     // dd($this->length, $sqlWalker);
-    return 'ds.standard_length(' .
+    return $this->getSchema() . '.standard_length(' .
         $this->length->dispatch($sqlWalker) . ')'; // (7)
   }
 

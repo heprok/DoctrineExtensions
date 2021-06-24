@@ -7,21 +7,23 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
-final class VolumeTimber extends FunctionNode
+abstract class VolumeTimber extends FunctionNode
 {
 
   public $length = null;
   public $diam = null;
 
+  abstract protected function getSchema():string;
 
   function getSql(SqlWalker $sqlWalker)
   {
     // dd($this->length, $sqlWalker);
-    return 'mill.volume_timber(' .
+    return $this->getSchema() . '.volume_timber(' .
         $this->length->dispatch($sqlWalker) . ',' .
         $this->diam->dispatch($sqlWalker) . ')';
   }
 
+  
   /**
    * VolumeTimber ::=
    *     "volume_timber" "(" ArithmeticPrimary "," ArithmeticPrimary ")"
